@@ -42,9 +42,10 @@ class AdminUsersController extends Controller
     {
         $input = $request->all();
         if($file = $request->file('photo_id')) {
-          $name = time(). $file->getClientOriginalName();
+          $name = $file->getClientOriginalName();
           // $path = $request->file->storeAs('images', $name);
-          $file->storeAs('images', $name);
+          // $file->move(public_path('images'), $name);
+          $file->move(public_path('uploads/images'), $name);
           $photo = Photo::create(['file'=>$name]);
 
           $input['photo_id'] = $photo->id;
