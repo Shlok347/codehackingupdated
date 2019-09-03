@@ -49,14 +49,14 @@
           </div>
 
           <div class="form-group">
-            {!! Form::submit('create user', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Update User', ['class'=>'btn btn-primary']) !!}
           </div>
 
 
-    </div>
-</div>
-    {!! Form::close() !!}
 
+    {!! Form::close() !!}
+  </div>
+</div>
 
     @include('includes.form_error')
 
