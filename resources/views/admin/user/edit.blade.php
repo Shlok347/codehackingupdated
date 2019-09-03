@@ -10,7 +10,7 @@
       @if (File::exists(public_path("uploads/images/".$user->photo->file)))
       <img src="{{ URL::to('/') }}/uploads/images/{{ $user->photo->file }}" class="img-responsive img-rounded" alt="" />
   @else
-      <img src="{{ URL::to('/') }}/uploads/images/nouser.png" class="img-responsive img-rounded" alt="" />
+      <img src="{{ URL::to('/') }}/uploads/images/abc.jpg" class="img-responsive img-rounded" alt="" />
   @endif
 
 
@@ -49,12 +49,22 @@
           </div>
 
           <div class="form-group">
-            {!! Form::submit('Update User', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Update User', ['class'=>'btn btn-primary col-md-4']) !!}
           </div>
 
+            {!! Form::close() !!}
 
 
-    {!! Form::close() !!}
+
+            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]])!!}
+
+            <div class="form-group">
+              {!! Form::submit('Delete User', ['class'=>'btn btn-danger col-md-4 offset-md-4']) !!}
+            </div>
+
+            {!! Form::close() !!}
+
+
   </div>
 </div>
 

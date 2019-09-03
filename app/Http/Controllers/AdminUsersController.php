@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Photo;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -49,7 +50,7 @@ class AdminUsersController extends Controller
       }
 
         if($file = $request->file('photo_id')) {
-          $name = $file->getClientOriginalName();
+          $name = time() . $file->getClientOriginalName();
           // $path = $request->file->storeAs('images', $name);
           // $file->move(public_path('images'), $name);
           $file->move(public_path('uploads/images'), $name);
@@ -84,7 +85,10 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        return view('admin.user.show');
+      $user = User::findOrFail($id);
+      $roles = Role::pluck('name', 'id')->all();
+
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
@@ -144,6 +148,14 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        // unlink(public_path() . "/uploads/images/". $user->photo->file);
+
+        $user->delete();
+
+        Session::flash('deleted_user', 'The User Has been Deleted');
+
+        return redirect('/admin/users');
     }
 }
