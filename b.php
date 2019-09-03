@@ -4,19 +4,14 @@
 
 <h1>Edit User</h1>
 
-  <div class="row">
     <div class="col-md-3 col-sm-3">
 
-      @if (File::exists(public_path("uploads/images/".$user->photo->file)))
-      <img src="{{ URL::to('/') }}/uploads/images/{{ $user->photo->file }}" class="img-responsive img-rounded" alt="" />
-  @else
-      <img src="{{ URL::to('/') }}/uploads/images/nouser.png" class="img-responsive img-rounded" alt="" />
-  @endif
-
-
+      <img @if($user->photo){ src="{{ URL::to('/') }}/uploads/images/{{ $user->photo->file }}"
+    }    @else { src = "http://www.sclance.com/pngs/user-png/user_png_1449784.png"; }
+@endif  >
     </div>
 <!-- {{$user->photo}} ? {{ URL::to('/') }}/uploads/images/{{ $user->photo->file }} : 'http://www.sclance.com/pngs/user-png/user_png_1449784.png' -->
-    <div class="col-md-9 col-sm-9">
+    <div class="col-md-9">
 
           {!! Form::model($user, ['method'=>'PATCH', 'action'=>['AdminUsersController@update', $user->id],'files'=>true])!!}
           <div class="form-group">
@@ -54,7 +49,7 @@
 
 
     </div>
-</div>
+
     {!! Form::close() !!}
 
 

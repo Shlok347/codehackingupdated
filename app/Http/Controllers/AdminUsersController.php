@@ -88,7 +88,10 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.user.edit');
+      $user = User::findOrFail($id);
+      $roles = Role::pluck('name', 'id')->all();
+
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**

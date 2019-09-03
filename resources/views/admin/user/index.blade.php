@@ -22,7 +22,7 @@
 
         <tr>
         <td>{{$user->id}}</td>
-        <td>{{$user->name}}</td>
+        <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
         <td><img src ="{{ URL::to('/') }}/uploads/images/{{ $user->photo->file }}" class="imga-thumbnail" height="50px"></td>
         <!-- <td><img height="50" src="{{Storage::url('images/'.$user->photo->file)}}" alt="{{$user->filename}}"></td> -->
         <!-- <td><img height="50" src="{{$user->photo ? url('images/'.$user->photo->file) : 'No User Photo'}}"></td> -->
