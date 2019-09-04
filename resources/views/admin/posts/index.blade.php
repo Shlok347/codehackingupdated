@@ -28,7 +28,7 @@
       @foreach($posts as $post)
       <tr>
         <td>{{$post->id}}</td>
-        <td><img src ="{{ URL::to('/') }}/uploads/images/{{ $post->photo->file }}" class="imga-thumbnail" height="50px"></td>
+        <td><img src ="{{$post->photo ? public_path('/uploads/images/'). $post->photo->file : 'http://placehold.it/400x400' }}" class="imga-thumbnail" height="50px"></td>
         <td><a href="{{route('posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
         <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
         <td>{{$post->title}}</td>
