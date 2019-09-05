@@ -28,8 +28,10 @@
 
         <tr>
         <td>{{$user->id}}</td>
+
+
         <td><a href="{{route('users.edit', $user->id)}}">{{$user->name}}</a></td>
-         <td> <img height="50" src="{{$user->photo ? public_path('/uploads/images/').$user->photo : 'http://placehold.it/400x400'}}" alt="" ></td>
+         <td> <img height="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt="" ></td>
         <td>{{$user->email}}</td>
         <td>{{$user->role->name}}</td>
         <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>

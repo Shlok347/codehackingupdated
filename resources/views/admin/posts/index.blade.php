@@ -17,8 +17,10 @@
       <th>Category</th>
       <th>Title</th>
       <th>Body</th>
-      <th>Created</th>
-      <th>Updated</th>
+      <th>Post Links</th>
+      <th>Comments</th>
+      <th>Created at</th>
+      <th>Updated at</th>
     </tr>
   </thead>
 
@@ -28,11 +30,13 @@
       @foreach($posts as $post)
       <tr>
         <td>{{$post->id}}</td>
-        <td><img src ="{{$post->photo ? public_path('/uploads/images/'). $post->photo->file : 'http://placehold.it/400x400' }}" class="imga-thumbnail" height="50px"></td>
+        <td><img src ="{{$post->photo ? $post->photo->file : 'http://placehold.it/400x400' }}" class="imga-thumbnail" height="50px"></td>
         <td><a href="{{route('posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
         <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
         <td>{{$post->title}}</td>
-        <td>{{$post->body}}</td>
+        <td>{{str_limit($post->body, 30)}}</td>
+        <td><a href="{{ route('home.post', $post->id) }}">View Post</a></td>
+        <td><a href="{{ route('comments.show', $post->id) }}">View Comments</a></td>
         <td>{{$post->created_at->diffForHumans()}}</td>
         <td>{{$post->updated_at->diffForHumans()}}</td>
       </tr>

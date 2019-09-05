@@ -25,7 +25,7 @@
       @foreach($photos as $photo)
       <tr>
         <td>{{$photo->id}}</td>
-        <td><img height="50" src="{{ URL::to('/') }}/uploads/images/{{ $photo->file }}"></td>
+        <td><img height="50" src="{{$photo ? $photo->file : 'http://placehold.it/400x400' }}"></td>
         <td>{{$photo->created_at ? $photo->created_at->diffForHumans() : 'no date'}}</td>
 
         <td>
