@@ -19,15 +19,40 @@ class AdminMediasController extends Controller
     public function store(Request $request){
       $file = $request->file('file');
       $name = time(). $file->getClientOriginalName();
-      $file->move(public_path('uploads/images'), $name);
+      $file->move(public_path('uploads\images'), $name);
       Photo::create(['file'=>$name]);
 
     }
 
     public function destroy($id){
-      $photo = Photo::findOrFail($id);
-      unlink(public_path('uploads/images/').$photo->file);
-      $photo->delete();
-      return redirect('/admin/media');
-    }
-}
+
+
+        $photo = Photo::findOrFail($id);
+
+
+        unlink(public_path() . $photo->file);
+
+
+        $photo->delete();
+      }
+
+      public function deleteMedia(Request $request){
+
+          if(isset($request->delete_all) && !empty($request->checkBoxArray)){
+
+              $photos = Photo::findOrFail($request->checkBoxArray);
+
+
+
+              foreach($photos as $photo){
+                unlink(public_path() . $photo->file);
+                  $photo->delete();
+              }
+              return redirect()->back();
+          } else {
+              return redirect()->back();
+          }
+
+      }
+
+      }
