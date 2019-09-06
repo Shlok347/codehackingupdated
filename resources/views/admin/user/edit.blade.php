@@ -7,11 +7,7 @@
   <div class="row">
     <div class="col-md-3 col-sm-3">
 
-      @if (File::exists(public_path("uploads/images/".$user->photo->file)))
-      <img src="{{ URL::to('/') }}/uploads/images/{{ $user->photo->file }}" class="img-responsive img-rounded" alt="" />
-  @else
-      <img src="{{ URL::to('/') }}/uploads/images/abc.jpg" class="img-responsive img-rounded" alt="" />
-  @endif
+       <img height="300" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt="" >
 
 
     </div>

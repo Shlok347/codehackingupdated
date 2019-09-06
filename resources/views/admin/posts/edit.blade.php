@@ -8,7 +8,7 @@
 
   <div class="col-md-4">
 
-<img src="{{ URL::to('/') }}/uploads/images/{{ $post->photo->file }}" class="img-thumbnail img-responsive">
+<img height="300" width="300" src="{{$post->photo ? $post->photo->file : 'http://placehold.it/400x400'}}" alt="" >
   </div>
 
   <div class="col-md-8">
