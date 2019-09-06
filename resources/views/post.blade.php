@@ -20,7 +20,7 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img height="200" class="imga-responsive" src="{{$post->photo ? $post->photo->file : $post->photoPlaceholder}}" alt="">
+                <img height="200" class="imga-responsive" src="{{$post->photo ? $post->photo->file : 'http://placehold.it/700x200'}}" alt="">
 
                 <hr>
 
@@ -52,5 +52,5 @@
       <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
       <script id="dsq-count-scr" src="//codehacking347.disqus.com/count.js" async></script>
-      
+
 @stop

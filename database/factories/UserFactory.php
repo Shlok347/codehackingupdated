@@ -30,7 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-        'category_id' => $faker->numberBetween(1,0),
+        'category_id' => $faker->numberBetween(1,3),
         'photo_id' => 1,
         'title' => $faker->sentence(7,11),
         'body' => $faker->paragraphs(rand(10,15), true),
